@@ -1,11 +1,40 @@
 {
-  "welcome" : "Welcome to the Calculator!",
-  "firstNumber" : "What's the first number?",
-  "secondNumber" : "What's the second number?",
-  "validNumber" : "Hmm... that doesn't look like a valid number.",
-  "operations" : "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
-  "validOperation" : "Must choose 1, 2, 3, or 4",
-  "restart" : "Ready for a new calculation? (y/n)",
-  "validAnswer": "Must choose y or n",
-  "result": "The result is: "
+  "languagePrompt": "Choose your language: English (en), French (fr), or Spanish (es)",
+  "validLanguage": "Must choose en, fr, or es",
+  "en": {
+      "welcome": "Welcome to the Calculator!",
+      "firstNumber": "What's the first number?",
+      "secondNumber": "What's the second number?",
+      "validNumber": "Hmm... that doesn't look like a valid number.",
+      "operations": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+      "validOperation": "Must choose 1, 2, 3, or 4",
+      "invalidDivision": "Cannot divide by 0. Choose another divisor for number 2",
+      "restart": "Ready for a new calculation? (y/n)",
+      "validAnswer": "Must choose y or n",
+      "result": "The result is: "
+  },
+  "fr": {
+      "welcome": "Bienvenue dans le Calculateur!",
+      "firstNumber": "Quel est le premier numero?",
+      "secondNumber": "Quel est le deuxieme numero?",
+      "validNumber": "Hmm... ca ne ressemble pas a un numéro valide.",
+      "operations": "Quelle operation souhaitez-vous effectuer?\n1) Additionner 2) Soustraire 3) Multiplier 4) Diviser",
+      "validOperation": "Vous devez choisir 1, 2, 3 ou 4",
+      "invalidDivision": "Impossible de diviser par 0. Choisissez un autre diviseur pour le nombre 2",
+      "restart": "Pret pour un nouveau calcul? (o/n)",
+      "validAnswer": "Doit choisir o ou n",
+      "result": "Le resultat est: "
+  },
+  "es": {
+      "welcome": "Bienvenido a la Calculadora!",
+      "firstNumber": "Cual es el primer numero?",
+      "secondNumber": "Cuál es el segundo numero?",
+      "validNumber": "Hmm... eso no parece un número valido.",
+      "operations": "Que operación te gustaría realizar?\n1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
+      "validOperation": "Debe elegir 1, 2, 3 o 4",
+      "invalidDivision": "No se puede dividir por 0. Elige otro divisor para el numero 2",
+      "restart": "Listo para un nuevo cálculo? (s/n)",
+      "validAnswer": "Debe elegir s o n",
+      "result": "El resultado es: "
+  }
 }
