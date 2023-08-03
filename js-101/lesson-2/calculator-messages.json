@@ -1,8 +1,8 @@
 {
+  "welcome": "Welcome to the Calculator",
   "languagePrompt": "Choose your language: English (en), French (fr), or Spanish (es)",
   "validLanguage": "Must choose en, fr, or es",
   "en": {
-      "welcome": "Welcome to the Calculator!",
       "firstNumber": "What's the first number?",
       "secondNumber": "What's the second number?",
       "validNumber": "Hmm... that doesn't look like a valid number.",
@@ -14,7 +14,6 @@
       "result": "The result is: "
   },
   "fr": {
-      "welcome": "Bienvenue dans le Calculateur!",
       "firstNumber": "Quel est le premier numero?",
       "secondNumber": "Quel est le deuxieme numero?",
       "validNumber": "Hmm... ca ne ressemble pas a un numéro valide.",
@@ -26,7 +25,6 @@
       "result": "Le resultat est: "
   },
   "es": {
-      "welcome": "Bienvenido a la Calculadora!",
       "firstNumber": "Cual es el primer numero?",
       "secondNumber": "Cuál es el segundo numero?",
       "validNumber": "Hmm... eso no parece un número valido.",

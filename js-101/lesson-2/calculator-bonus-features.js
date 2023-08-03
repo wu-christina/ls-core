@@ -101,19 +101,18 @@ function printResult(language, result) {
   prompt(MESSAGES[language].result.concat(result));
 }
 
-function printWelcomeMessage(language) {
-  prompt(MESSAGES[language].welcome);
+function printWelcomeMessage() {
+  prompt(MESSAGES.welcome);
 }
 
 // program begins
 
-let chosenLanguage = askLanguage();
-printWelcomeMessage(chosenLanguage);
+console.clear();
+printWelcomeMessage();
 
 while (true) {
 
-  console.clear();
-
+  let chosenLanguage = askLanguage();
   let number1 = askNumber(chosenLanguage, "firstNumber");
   let number2 = askNumber(chosenLanguage, "secondNumber");
   let operation = askOperation(chosenLanguage);
