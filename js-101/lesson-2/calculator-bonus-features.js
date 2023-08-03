@@ -6,7 +6,9 @@ function prompt(message) {
 }
 
 function invalidLanguage(language) {
-  return language !== 'en' && language !== 'fr' && language !== 'es';
+  return language.toLowerCase() !== 'en' &&
+  language.toLowerCase() !== 'fr' &&
+  language.toLowerCase() !== 'es';
 }
 
 function invalidNumber(number) {
@@ -29,7 +31,7 @@ function askLanguage() {
     prompt(MESSAGES.validLanguage);
     language = readline.question();
   }
-  return language;
+  return language.toLowerCase();
 }
 
 function askNumber(language, numberKey) {
@@ -104,7 +106,7 @@ let chosenLanguage = askLanguage();
 prompt(MESSAGES[chosenLanguage].welcome);
 
 while (true) {
-
+console.clear();
   let number1 = askNumber(chosenLanguage, "firstNumber");
   let number2 = askNumber(chosenLanguage, "secondNumber");
   let operation = askOperation(chosenLanguage);
