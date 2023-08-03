@@ -6,9 +6,7 @@ function prompt(message) {
 }
 
 function invalidLanguage(language) {
-  return language.toLowerCase() !== 'en' &&
-  language.toLowerCase() !== 'fr' &&
-  language.toLowerCase() !== 'es';
+  return language.toLowerCase() !== 'en' && language.toLowerCase() !== 'fr' && language.toLowerCase() !== 'es';
 }
 
 function invalidNumber(number) {
@@ -16,7 +14,7 @@ function invalidNumber(number) {
 }
 
 function invalidRestartAnswer(answer) {
-  return (answer !== 'y') && (answer !== 'n') && (answer !== 'o') && (answer !== 's');
+  return answer.toLowerCase() !== 'y' && answer.toLowerCase() !== 'n' && answer.toLowerCase() !== 'o' && answer.toLowerCase() !== 's';
 }
 
 function invalidDivision(number, operation) {
@@ -96,17 +94,26 @@ function askToRestart(language) {
     prompt(MESSAGES[language].validAnswer);
     restartAnswer = readline.question();
   }
-  return restartAnswer;
+  return restartAnswer.toLowerCase();
 }
 
+function printResult(language, result) {
+  prompt(MESSAGES[language].result.concat(result));
+}
+
+function printWelcomeMessage(language) {
+  prompt(MESSAGES[language].welcome);
+}
 
 // program begins
 
 let chosenLanguage = askLanguage();
-prompt(MESSAGES[chosenLanguage].welcome);
+printWelcomeMessage(chosenLanguage);
 
 while (true) {
-console.clear();
+
+  console.clear();
+
   let number1 = askNumber(chosenLanguage, "firstNumber");
   let number2 = askNumber(chosenLanguage, "secondNumber");
   let operation = askOperation(chosenLanguage);
@@ -114,7 +121,7 @@ console.clear();
 
   let finalValue = calculatedValue(operation, number1, number2);
 
-  prompt(MESSAGES[chosenLanguage].result.concat(finalValue));
+  printResult(chosenLanguage, finalValue);
 
   let restartAnswer = askToRestart(chosenLanguage);
 
