@@ -15,7 +15,7 @@ function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
-function invalidAnswer(answer) {
+function invalidRestartAnswer(answer) {
   return (answer !== 'y') && (answer !== 'n') && (answer !== 'o') && (answer !== 's');
 }
 
@@ -92,7 +92,7 @@ function askToRestart(language) {
   prompt(MESSAGES[language].restart);
   let restartAnswer = readline.question();
 
-  while (invalidAnswer(restartAnswer)) {
+  while (invalidRestartAnswer(restartAnswer)) {
     prompt(MESSAGES[language].validAnswer);
     restartAnswer = readline.question();
   }
