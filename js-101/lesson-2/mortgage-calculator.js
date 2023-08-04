@@ -11,7 +11,7 @@ function printWelcome() {
 }
 
 function invalidLoanAmount(amount) {
-  return amount.trimStart() === '' || Number.isNaN(Number(amount)) || Number(amount) <= 0;
+  return amount.trimStart() === '' || !Number.isFinite(Number(amount)) || Number(amount) <= 0;
 }
 
 function invalidAPRChoice(format) {
@@ -19,11 +19,11 @@ function invalidAPRChoice(format) {
 }
 
 function invalidAPR(APR) {
-  return APR.trimStart() === '' || Number.isNaN(Number(APR)) || Number(APR) < 0;
+  return APR.trimStart() === '' || !Number.isFinite(Number(APR)) || Number(APR) < 0;
 }
 
 function invalidLoanDuration(time) {
-  return time.trimStart() === '' || Number.isNaN(Number(time)) || Number(time) < 0;
+  return time.trimStart() === '' || !Number.isFinite(Number(time)) || Number(time) < 0;
 }
 
 function askLoanAmount() {
@@ -97,9 +97,9 @@ function calculateMonthlyPayment(monthlyInterestRate, loan, duration) {
 
 function paymentMessage(rateFormat, payment, loan, time, APR) {
   if (rateFormat === '1') {
-    prompt(`For a $${loan} loan with a duration of ${time} months and a APR of ${APR}%, the monthly payment is $${payment}.`);
+    prompt(`For a $${loan} loan with a duration of ${time} months and a ${APR}% APR, the monthly payment is $${payment}.`);
   } else if (rateFormat === '2') {
-    prompt(`For a $${loan} loan with a duration of ${time} months and a APR of ${APR * 100}%, the monthly payment is $${payment}.`);
+    prompt(`For a $${loan} loan with a duration of ${time} months and a ${APR * 100}% APR, the monthly payment is $${payment}.`);
   }
 }
 
