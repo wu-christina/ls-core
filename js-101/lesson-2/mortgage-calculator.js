@@ -6,6 +6,10 @@ function prompt(message) {
   console.log(`=> ${message}`);
 }
 
+function printWelcome() {
+  prompt(MESSAGES.welcome);
+}
+
 function invalidLoanAmount(amount) {
   return amount.trimStart() === '' || Number.isNaN(Number(amount)) || Number(amount) <= 0;
 }
@@ -23,33 +27,33 @@ function invalidLoanDuration(time) {
 }
 
 function askLoanAmount() {
-  prompt('What is the loan amount?');
+  prompt(MESSAGES.askLoan);
   let amount = readline.question();
 
   while (invalidLoanAmount(amount)) {
-    prompt('Enter a number greater than 0.');
+    prompt(MESSAGES.invalidLoanAmount);
     amount = readline.question();
   }
   return Number(amount);
 }
 
 function askAPRFormat() {
-  prompt('How do you want to represent the rate?\n1) Percent (Ex. 10 for 10%)\n2) Decimal (Ex. 0.1 for 10%)');
+  prompt(MESSAGES.askAPRFormat);
   let choice = readline.question();
 
   while (invalidAPRChoice(choice)) {
-    prompt('Invalid choice. Please select 1 (Percent) or 2 (Decimal).');
+    prompt(MESSAGES.invalidAPRChoice);
     choice = readline.question();
   }
   return choice;
 }
 
 function askAPR() {
-  prompt("What is the Annual Percentage Rate (APR)?");
+  prompt(MESSAGES.askAPR);
   let rate = readline.question();
 
   while (invalidAPR(rate)) {
-    prompt('Please enter a number greater or equal to 0.');
+    prompt(MESSAGES.invalidAPR);
     rate = readline.question();
   }
   return Number(rate);
@@ -67,11 +71,11 @@ function calculateMonthlyRate(format, APR) {
 }
 
 function askLoanDuration() {
-  prompt("What is the loan duration in months?");
+  prompt(MESSAGES.askLoanDuration);
   let duration = readline.question();
 
   while (invalidLoanDuration(duration)) {
-    prompt('Choose a loan duration greater than or equal to 0 month.');
+    prompt(MESSAGES.invalidLoanDuration);
     duration = readline.question();
   }
   return Number(duration);
@@ -100,19 +104,21 @@ function paymentMessage(rateFormat, payment, loan, time, APR) {
 }
 
 function askNewCalculation() {
-  prompt('Would you like to perform a new calculation?');
+  prompt(MESSAGES.askNewCalculation);
   let answer = readline.question();
 
   while (!['y','n','yes', 'no'].includes(answer.toLowerCase())) {
-    prompt('Invalid input. Choose: Y, Yes, N, or No.');
+    prompt(MESSAGES.invalidNewCalculationAnswer);
     answer = readline.question();
   }
-  return answer;
+  return answer.toLowerCase();
 }
+
 
 // program begins
 
-prompt('Welcome to the Mortgage Calculator!');
+console.clear();
+printWelcome();
 
 while (true) {
 
@@ -128,7 +134,7 @@ while (true) {
   let restartAnswer = askNewCalculation();
 
   if (['n', 'no'].includes(restartAnswer)) {
-    prompt('Goodbye!');
+    prompt(MESSAGES.goodbye);
     break;
   } else if (['y', 'yes'].includes(restartAnswer)) {
     console.clear();
