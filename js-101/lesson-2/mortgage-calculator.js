@@ -37,7 +37,7 @@ function askLoanAmount() {
   return Number(amount);
 }
 
-function askAPRFormat() {
+function askAnnualInterestRateFormat() {
   prompt(MESSAGES.askAPRFormat);
   let choice = readline.question();
 
@@ -48,7 +48,7 @@ function askAPRFormat() {
   return choice;
 }
 
-function askAPR() {
+function askAnnualInterestRate() {
   prompt(MESSAGES.askAPR);
   let rate = readline.question();
 
@@ -59,13 +59,13 @@ function askAPR() {
   return Number(rate);
 }
 
-function calculateMonthlyRate(format, APR) {
+function calculateMonthlyRate(format, annualRate) {
   let monthlyInterestRate;
 
   if (format === '1') {
-    monthlyInterestRate = (APR / 100) / NUM_MONTHS_IN_A_YEAR;
+    monthlyInterestRate = (annualRate / 100) / NUM_MONTHS_IN_A_YEAR;
   } else if (format === '2') {
-    monthlyInterestRate = APR / NUM_MONTHS_IN_A_YEAR;
+    monthlyInterestRate = annualRate / NUM_MONTHS_IN_A_YEAR;
   }
   return Number(monthlyInterestRate);
 }
@@ -123,18 +123,17 @@ printWelcome();
 while (true) {
 
   let loan = askLoanAmount();
-  let APRFormat = askAPRFormat();
-  let APR = askAPR(APRFormat);
+  let annualRateFormat = askAnnualInterestRateFormat();
+  let annualRate = askAnnualInterestRate(annualRateFormat);
   let loanDuration = askLoanDuration();
-  let monthlyRate = calculateMonthlyRate(APRFormat, APR);
+  let monthlyRate = calculateMonthlyRate(annualRateFormat, annualRate);
   let monthlyPayment = calculateMonthlyPayment(monthlyRate, loan, loanDuration);
 
-  paymentMessage(APRFormat, monthlyPayment, loan, loanDuration, APR);
+  paymentMessage(annualRateFormat, monthlyPayment, loan, loanDuration, annualRate);
 
   let restartAnswer = askNewCalculation();
 
   if (['n', 'no'].includes(restartAnswer)) {
-    prompt(MESSAGES.goodbye);
     break;
   } else if (['y', 'yes'].includes(restartAnswer)) {
     console.clear();
