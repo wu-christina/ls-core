@@ -1,5 +1,5 @@
 const readline = require('readline-sync');
-const NUM_MONTHS_IN_A_YEAR = 12;
+const TOTAL_MONTHS_IN_A_YEAR = 12;
 const MESSAGES = require('./mortgage-calculator-messages.json');
 
 function prompt(message) {
@@ -14,11 +14,11 @@ function invalidLoanAmount(amount) {
   return amount.trimStart() === '' || !Number.isFinite(Number(amount)) || Number(amount) <= 0;
 }
 
-function invalidAnnualRateChoice(format) {
+function invalidAPRChoice(format) {
   return !['1', '2'].includes(format);
 }
 
-function invalidAnnualRate(APR) {
+function invalidAPR(APR) {
   return APR.trimStart() === '' || !Number.isFinite(Number(APR)) || Number(APR) < 0;
 }
 
@@ -37,22 +37,22 @@ function askLoanAmount() {
   return Number(amount);
 }
 
-function askAnnualInterestRateFormat() {
+function askAPRFormat() {
   prompt(MESSAGES.askAPRFormat);
   let choice = readline.question();
 
-  while (invalidAnnualRateChoice(choice)) {
+  while (invalidAPRChoice(choice)) {
     prompt(MESSAGES.invalidAPRChoice);
     choice = readline.question();
   }
   return choice;
 }
 
-function askAnnualInterestRate() {
+function askAPR() {
   prompt(MESSAGES.askAPR);
   let rate = readline.question();
 
-  while (invalidAnnualRate(rate)) {
+  while (invalidAPR(rate)) {
     prompt(MESSAGES.invalidAPR);
     rate = readline.question();
   }
@@ -63,9 +63,9 @@ function calculateMonthlyRate(format, annualRate) {
   let monthlyInterestRate;
 
   if (format === '1') {
-    monthlyInterestRate = (annualRate / 100) / NUM_MONTHS_IN_A_YEAR;
+    monthlyInterestRate = (annualRate / 100) / TOTAL_MONTHS_IN_A_YEAR;
   } else if (format === '2') {
-    monthlyInterestRate = annualRate / NUM_MONTHS_IN_A_YEAR;
+    monthlyInterestRate = annualRate / TOTAL_MONTHS_IN_A_YEAR;
   }
   return Number(monthlyInterestRate);
 }
@@ -123,13 +123,14 @@ printWelcome();
 while (true) {
 
   let loan = askLoanAmount();
-  let annualRateFormat = askAnnualInterestRateFormat();
-  let annualRate = askAnnualInterestRate(annualRateFormat);
+  let annualRateFormat = askAPRFormat();
+  let annualRate = askAPR(annualRateFormat);
   let loanDuration = askLoanDuration();
   let monthlyRate = calculateMonthlyRate(annualRateFormat, annualRate);
   let monthlyPayment = calculateMonthlyPayment(monthlyRate, loan, loanDuration);
 
-  paymentMessage(annualRateFormat, monthlyPayment, loan, loanDuration, annualRate);
+  paymentMessage(annualRateFormat, monthlyPayment, loan,
+    loanDuration, annualRate);
 
   let restartAnswer = askNewCalculation();
 

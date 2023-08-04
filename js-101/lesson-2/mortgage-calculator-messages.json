@@ -5,7 +5,7 @@
   "askAPRFormat": "How do you want to represent the rate?\n1) Percent (Ex. 10 for 10%)\n2) Decimal (Ex. 0.1 for 10%)",
   "invalidAPRChoice": "Invalid choice. Please select 1 (Percent) or 2 (Decimal).",
   "askAPR": "What is the Annual Percentage Rate (APR)?",
-  "invalidAnnualRate": "Invalid input. Please enter a number greater or equal to 0.",
+  "invalidAPR": "Invalid input. Please enter a number greater or equal to 0.",
   "askLoanDuration": "What is the loan duration in months?",
   "invalidLoanDuration": "Invalid input. Choose a loan duration greater than or equal to 0 month.",
   "askNewCalculation": "Would you like to perform a new calculation? (y/n)",
