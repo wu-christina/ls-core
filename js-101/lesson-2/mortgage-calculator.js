@@ -14,11 +14,11 @@ function invalidLoanAmount(amount) {
   return amount.trimStart() === '' || !Number.isFinite(Number(amount)) || Number(amount) <= 0;
 }
 
-function invalidAPRChoice(format) {
+function invalidAnnualRateChoice(format) {
   return !['1', '2'].includes(format);
 }
 
-function invalidAPR(APR) {
+function invalidAnnualRate(APR) {
   return APR.trimStart() === '' || !Number.isFinite(Number(APR)) || Number(APR) < 0;
 }
 
@@ -41,7 +41,7 @@ function askAnnualInterestRateFormat() {
   prompt(MESSAGES.askAPRFormat);
   let choice = readline.question();
 
-  while (invalidAPRChoice(choice)) {
+  while (invalidAnnualRateChoice(choice)) {
     prompt(MESSAGES.invalidAPRChoice);
     choice = readline.question();
   }
@@ -52,7 +52,7 @@ function askAnnualInterestRate() {
   prompt(MESSAGES.askAPR);
   let rate = readline.question();
 
-  while (invalidAPR(rate)) {
+  while (invalidAnnualRate(rate)) {
     prompt(MESSAGES.invalidAPR);
     rate = readline.question();
   }
