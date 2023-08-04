@@ -10,5 +10,4 @@
   "invalidLoanDuration": "Choose a loan duration greater than or equal to 0 month.",
   "askNewCalculation": "Would you like to perform a new calculation?",
   "invalidNewCalculationAnswer": "Invalid input. Choose: Y, Yes, N, or No.",
-  "goodbye": "Goodbye!"
 }
