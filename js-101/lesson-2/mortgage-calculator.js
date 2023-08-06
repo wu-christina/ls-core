@@ -1,6 +1,6 @@
 const readline = require('readline-sync');
-const TOTAL_MONTHS_IN_A_YEAR = 12;
 const MESSAGES = require('./mortgage-calculator-messages.json');
+const TOTAL_MONTHS_IN_A_YEAR = 12;
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -50,13 +50,13 @@ function askAPRFormat() {
 
 function askAPR() {
   prompt(MESSAGES.askAPR);
-  let rate = readline.question();
+  let interestRate = readline.question();
 
-  while (invalidAPR(rate)) {
+  while (invalidAPR(interestRate)) {
     prompt(MESSAGES.invalidAPR);
-    rate = readline.question();
+    interestRate = readline.question();
   }
-  return Number(rate);
+  return Number(interestRate);
 }
 
 function calculateMonthlyRate(format, annualRate) {
