@@ -24,7 +24,8 @@ const CHOICES = {
 const NONABBREVIATED_CHOICES = Object.keys(CHOICES);
 const ABBREVIATED_CHOICES = ['r', 'p', 's', 'l', 'sp'];
 const MAX_LENGTH_ABBREVIATED_CHOICE = 'sp'.length;
-const MIN_NUM_OF_WINS = 3;
+const BEST_OF_NUM = 5;
+const POINTS_TO_WIN = Math.ceil(BEST_OF_NUM / 2);
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -49,7 +50,7 @@ function invalidYesOrNo(answer) {
 }
 
 function askAreYouReadyToPlay() {
-  prompt('Begin a game of best of 5? (y/n)');
+  prompt(`Begin a game of best of ${BEST_OF_NUM}? (y/n)`);
   let answer = readline.question();
 
   while (invalidYesOrNo(answer)) {
@@ -95,11 +96,11 @@ function displayWinnerOfRound(choice, computerChoice) {
   prompt(`You chose ${choice} and the computer chose ${computerChoice}.`);
 
   if (CHOICES[choice]['win'].includes(computerChoice)) {
-    prompt('You win! Computer loses!');
+    prompt('You win this round!');
   } else if (CHOICES[choice]['lose'].includes(computerChoice)) {
-    prompt('You lose! Computer wins!');
+    prompt('Computer wins this round!');
   } else {
-    prompt("It's a tie!");
+    prompt("This round is a tie!");
   }
 }
 
@@ -118,9 +119,9 @@ function displayScore(userScore, computerScore) {
 
 function displayOverallWinner(userScore, computerScore) {
   if (userScore > computerScore) {
-    console.log('~ * ~ * ~ You won overall in a best of 5 game! ~ * ~ * ~');
+    console.log(`~ * ~ * ~ You won overall in a best of ${BEST_OF_NUM} game! ~ * ~ * ~`);
   } else {
-    console.log('~ * ~ * ~ Computer won overall in a best of 5 game! ~ * ~ * ~');
+    console.log(`~ * ~ * ~ Computer won overall in a best of ${BEST_OF_NUM} game! ~ * ~ * ~`);
   }
 }
 
@@ -164,8 +165,8 @@ while (true) {
 
     displayWinnerOfRound(choice, computerChoice);
     displayScore(userScore, computerScore);
-    if (userScore === MIN_NUM_OF_WINS ||
-    computerScore === MIN_NUM_OF_WINS) break;
+    if (userScore === POINTS_TO_WIN ||
+    computerScore === POINTS_TO_WIN) break;
   }
 
   displayOverallWinner(userScore, computerScore);
